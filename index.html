@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TP Final - Gerbaudo</title>
 </head>
 <body>
-
+    <body>  
+        <div id="lista">
+            <h1>Lista de productos</h1>
+            <button onclick="ObtenerProductos()">Obtener productos</button>
+            <table>
+                <tr>
+                    <th>IDCOD</th>
+                    <th>Título</th>
+                    <th>Precio AR$</th>
+                    <th>Precio U$D</th>
+                    <th>Fecha</th>
+                </tr>
+                <tbody id="resultados">
+                </tbody>
+            </table>
+        </div>
     <script src="script.js"></script>
 </body>
 </html>
