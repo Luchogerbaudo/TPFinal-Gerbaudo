@@ -56,4 +56,32 @@ function Borrar(idcod) {
       document.getElementById(ids[i]).style.display = 'none';
     }
     document.getElementById(_div).style.display = 'block';
-  }a
+  }
+
+// Crear nuevo producto
+function CrearNuevoProducto() {
+    let producto = {
+        titulo: document.getElementById('titulo').value,
+        precioPeso: document.getElementById('precioPeso').value,
+        precioDolar: document.getElementById('precioDolar').value,
+        fecha: document.getElementById('fecha').value
+    };
+    fetch(urlBase, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(producto)
+    })
+    .then(response => response.text())
+    .then(
+        function(texto) {
+            if (texto.trim() == "OK") {
+                alert('Se creo el producto con exito.');
+                Mostrar('lista');
+                ObtenerProductos();
+            } else {
+                alert(texto);
+            }
+        }
+    )
+    .catch(error => console.error('Error:', error));
+  }
