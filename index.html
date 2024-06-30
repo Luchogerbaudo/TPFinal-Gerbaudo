@@ -6,7 +6,10 @@
     <title>TP Final - Gerbaudo</title>
 </head>
 <body>
-    <body>  
+    <body>
+        <button onclick="Mostrar('lista')">Lista de productos</button>
+        <button onclick="Mostrar('nuevo-producto')">Nuevo Producto</button>
+        <hr>
         <div id="lista">
             <h1>Lista de productos</h1>
             <button onclick="ObtenerProductos()">Obtener productos</button>
@@ -21,6 +24,20 @@
                 <tbody id="resultados">
                 </tbody>
             </table>
+        </div>
+        <div id="nuevo-producto" style="display:none">
+            <h1>Nuevo Producto</h1>
+            <form action="javascript:none">
+                <input type="text" id="titulo" placeholder="Ingrese un título">
+                <br>
+                <input type="number" id="precioPeso" placeholder="Ingrese un precio Peso AR$">
+                <br>
+                <input type="number" id="precioDolar" placeholder="Ingrese un precio Dólar U$D">
+                <br>
+                <input type="date" id="fecha">
+                <br>
+                <button onclick="CrearNuevoProducto()">Crear producto</button>
+            </form>
         </div>
     <script src="script.js"></script>
 </body>
