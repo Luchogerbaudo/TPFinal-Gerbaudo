@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TP Final - Gerbaudo</title>
+    <title>ABM Productos - Gerbaudo</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/icon.png" type="image/x-icon">
 </head>
 <body>
     <body>
+
         <button onclick="Mostrar('lista')">Lista de productos</button>
-        <button onclick="Mostrar('nuevo-producto')">Nuevo Producto</button>
+        <button onclick="Mostrar('nuevo-producto')">Nuevo producto</button>
         <hr>
+
         <div id="lista">
             <h1>Lista de productos</h1>
-            <button onclick="ObtenerProductos()">Obtener productos</button>
+            <button id="btnObtenerProductos" onclick="ObtenerProductos()">Obtener productos</button>
             <table>
                 <tr>
                     <th>IDCOD</th>
@@ -26,8 +29,9 @@
                 </tbody>
             </table>
         </div>
+
         <div id="nuevo-producto" style="display:none">
-            <h1>Nuevo Producto</h1>
+            <h1>Nuevo producto</h1>
             <form action="javascript:none">
                 <input type="text" id="titulo" placeholder="Ingrese un título">
                 <br>
@@ -40,8 +44,9 @@
                 <button onclick="CrearNuevoProducto()">Crear producto</button>
             </form>
         </div>
+
         <div id="modificar-producto" style="display: none;">
-            <h2>Modificar Producto</h2>
+            <h1>Modificar producto</h1>
             <form onsubmit="event.preventDefault(); GuardarCambios()">
                 <input type="hidden" id="idModificar">
                 <label for="tituloModificar">Título:</label>
@@ -55,6 +60,8 @@
                 <button type="submit">Guardar Cambios</button>
             </form>
         </div>
+
     <script src="script.js"></script>
+
 </body>
 </html>

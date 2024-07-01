@@ -23,8 +23,8 @@ function MostrarProductos(productos) {
         <td>${productos[i].precioPeso}</td>
         <td>${productos[i].precioDolar}</td>
         <td>${productos[i].fecha}</td>
-        <td><button onclick="Borrar('${productos[i].idcod}')">Borrar</button></td>
-        <td><button onclick="Modificar('${productos[i].idcod}')">Modificar</button></td>
+        <td><button class="btnBorrar" onclick="Borrar('${productos[i].idcod}')">Borrar</button></td>
+        <td><button class="btnModificar" onclick="Modificar('${productos[i].idcod}')">Modificar</button></td>
       </tr>
     `;
   }
@@ -76,6 +76,7 @@ function Modificar(idcod) {
     .catch(error => console.error('Error:', error));
 }
 
+// Enviar el PATCH
 function GuardarCambios() {
   let idModificar = document.getElementById('idModificar').value;
   let producto = {

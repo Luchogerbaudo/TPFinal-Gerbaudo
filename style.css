@@ -1,4 +1,4 @@
-/* Estilos generales */
+/* body */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -7,23 +7,24 @@ body {
   color: #333;
 }
 
-/* Estilos para los botones principales */
+/* botones del body */
 body > button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
-  border: none;
+  border: 1px solid #000;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
   margin: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body > button:hover {
-  background-color: #0056b3;
+  background-color: #003670;
 }
 
-/* Estilos para el contenedor de la lista de productos */
+/* container de la lista */
 #lista {
   max-width: 800px;
   margin: 20px auto;
@@ -31,9 +32,9 @@ body > button:hover {
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #fff;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Estilos para el título */
 #lista h1 {
   font-size: 24px;
   margin-bottom: 20px;
@@ -41,24 +42,25 @@ body > button:hover {
   text-align: center;
 }
 
-/* Estilos para el botón de obtener productos */
-#lista button {
+/* botón obtener productos */
+#lista #btnObtenerProductos {
   padding: 10px 20px;
   background-color: #28a745;
   color: #fff;
-  border: none;
+  border: 1px solid #000;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
   display: block;
   width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#lista button:hover {
-  background-color: #218838;
+#lista #btnObtenerProductos:hover {
+  background-color: #007219;
 }
 
-/* Estilos para la tabla de productos */
+/* tabla de productos */
 #lista table {
   width: 100%;
   border-collapse: collapse;
@@ -69,14 +71,23 @@ body > button:hover {
 #lista td {
   border: 1px solid #ddd;
   padding: 8px;
-  text-align: left; /* Alineación de texto a la izquierda */
+  text-align: center;
+  white-space: nowrap;
 }
 
 #lista th {
   background-color: #f2f2f2;
-  color: #333;
+  color: #000000;
   font-weight: bold;
+  border: 2px solid #474747; 
 }
+
+#lista td {
+  background-color: #ffffff;
+  color: #141414;
+  border: 2px solid #a5a5a5; 
+}
+
 
 #lista tbody tr:nth-child(even) {
   background-color: #f9f9f9;
@@ -86,35 +97,40 @@ body > button:hover {
   background-color: #e9e9e9;
 }
 
-/* Estilos para los botones dentro de la tabla */
-#lista button.delete,
-#lista button.modify {
-  padding: 6px 12px;
-  border: none;
+/* botones dentro de la tabla */
+#lista button.btnBorrar,
+#lista button.btnModificar {
+  padding: 10px 20px;
+  border: 1px solid #000;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
 }
 
-#lista button.delete {
-  background-color: #dc3545;
+/* botones dentro de la tabla de Borrar */
+#lista button.btnBorrar {
+  background-color: #218838;
   color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#lista button.delete:hover {
+#lista button.btnBorrar:hover {
   background-color: #c82333;
 }
 
-#lista button.modify {
-  background-color: #ffc107;
-  color: #212529;
+/* botones dentro de la tabla de Modificar*/
+#lista button.btnModificar {
+  background-color: #218838;
+  color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#lista button.modify:hover {
-  background-color: #e0a800;
+#lista button.btnModificar:hover {
+  background-color: #ffd147;
+  color: #020202;
 }
 
-/* Estilos para el formulario de nuevo producto */
+/* form de nuevo producto */
 #nuevo-producto {
   max-width: 800px;
   margin: 20px auto;
@@ -122,6 +138,7 @@ body > button:hover {
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #fff;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
 }
 
 #nuevo-producto h1 {
@@ -142,20 +159,21 @@ body > button:hover {
 
 #nuevo-producto button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #b61b70;
   color: #fff;
-  border: none;
+  border: 1px solid #000;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
   width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #nuevo-producto button:hover {
-  background-color: #0056b3;
+  background-color: #6e0060;
 }
 
-/* Estilos para el formulario de modificar producto */
+/* form de modificar producto */
 #modificar-producto {
   max-width: 800px;
   margin: 20px auto;
@@ -163,9 +181,10 @@ body > button:hover {
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #fff;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
 }
 
-#modificar-producto h2 {
+#modificar-producto h1 {
   font-size: 24px;
   margin-bottom: 20px;
   color: #333;
@@ -189,15 +208,16 @@ body > button:hover {
 
 #modificar-producto button {
   padding: 10px 20px;
-  background-color: #28a745;
+  background-color: #8f6414;
   color: #fff;
-  border: none;
+  border: 1px solid #000;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
   width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #modificar-producto button:hover {
-  background-color: #218838;
+  background-color: #5e3f06;
 }
