@@ -34,10 +34,25 @@
                 <input type="number" id="precioPeso" placeholder="Ingrese un precio Peso AR$">
                 <br>
                 <input type="number" id="precioDolar" placeholder="Ingrese un precio Dólar U$D">
-                <br>
+                                    <br>
                 <input type="date" id="fecha">
                 <br>
                 <button onclick="CrearNuevoProducto()">Crear producto</button>
+            </form>
+        </div>
+        <div id="modificar-producto" style="display: none;">
+            <h2>Modificar Producto</h2>
+            <form onsubmit="event.preventDefault(); GuardarCambios()">
+                <input type="hidden" id="idModificar">
+                <label for="tituloModificar">Título:</label>
+                <input type="text" id="tituloModificar" required><br><br>
+                <label for="precioPesoModificar">Precio en Pesos:</label>
+                <input type="number" id="precioPesoModificar" step="0.01" required><br><br>
+                <label for="precioDolarModificar">Precio en Dólares:</label>
+                <input type="number" id="precioDolarModificar" step="0.01" required><br><br>
+                <label for="fechaModificar">Fecha:</label>
+                <input type="date" id="fechaModificar" required><br><br>
+                <button type="submit">Guardar Cambios</button>
             </form>
         </div>
     <script src="script.js"></script>

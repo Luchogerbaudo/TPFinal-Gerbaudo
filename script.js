@@ -21,67 +21,110 @@ function MostrarProductos(productos) {
         <td>${productos[i].precioDolar}</td>
         <td>${productos[i].fecha}</td>
         <td><button onclick="Borrar('${productos[i].idcod}')">Borrar</button></td>
+        <td><button onclick="Modificar('${productos[i].idcod}')">Modificar</button></td>
       </tr>
     `;
   }
   document.getElementById('resultados').innerHTML = html;
 }
 
-// Función para borrar un producto
+// Borrar un producto
 function Borrar(idcod) {
-    if (confirm(`¿Estás seguro de que deseas borrar el producto con ID ${idcod}?`)) {
-      fetch(`${urlBase}/${idcod}`, {
-          method: 'DELETE'
-      })
+  if (confirm(`¿Borrar el producto con ID: ${idcod}?`)) {
+    fetch(`${urlBase}/${idcod}`, {
+      method: 'DELETE'
+    })
       .then(response => response.text())
-      .then(function(texto) {
-          if (texto.trim() === "OK") {
-              alert(`Producto con ID ${idcod} borrado correctamente.`);
-              ObtenerProductos(); // Actualizar la lista de productos después del borrado
-          } else {
-              alert(texto);
-          }
+      .then(function (texto) {
+        if (texto.trim() === "OK") {
+          alert(`ID ${idcod} borrado.`);
+          ObtenerProductos(); // Actualizamos tabla
+        } else {
+          alert(texto);
+        }
       })
-      .catch(error => console.error('Error al borrar:', error));
-    } else {
-      // Cancelar el borrado
-      console.log('Borrado cancelado.');
-    }
+      .catch(error => console.error('Error:', error));
+  } else {
+    // Cancelar el borrado
+    console.log('Borrado cancelado.');
   }
-  
-  // Función para mostrar un div y ocultar los demás
-  var ids = ['lista', 'nuevo-producto'];
-  function Mostrar(_div) {
-    for (let i = 0; i < ids.length; i++) {
-      document.getElementById(ids[i]).style.display = 'none';
-    }
-    document.getElementById(_div).style.display = 'block';
-  }
+}
+
+// Modificar un producto
+function Modificar(idcod) {
+  fetch(`${urlBase}/${idcod}`)
+    .then(response => response.json())
+    .then(producto => {
+      document.getElementById('idModificar').value = producto.idcod;
+      document.getElementById('tituloModificar').value = producto.titulo;
+      document.getElementById('precioPesoModificar').value = producto.precioPeso;
+      document.getElementById('precioDolarModificar').value = producto.precioDolar;
+      document.getElementById('fechaModificar').value = producto.fecha;
+      Mostrar('modificar-producto');
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function GuardarCambios() {
+  let idModificar = document.getElementById('idModificar').value;
+  let producto = {
+    titulo: document.getElementById('tituloModificar').value,
+    precioPeso: parseFloat(document.getElementById('precioPesoModificar').value),
+    precioDolar: parseFloat(document.getElementById('precioDolarModificar').value),
+    fecha: document.getElementById('fechaModificar').value
+  };
+
+  fetch(`${urlBase}/${idModificar}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(producto)
+  })
+    .then(response => response.text())
+    .then(texto => {
+      if (texto.trim() === 'OK') {
+        alert(`Producto con ID ${idModificar} modificado correctamente.`);
+        ObtenerProductos(); // Actualizamos tabla
+        Mostrar('lista'); // Mostramos la tabla
+      } else {
+        alert(texto);
+      }
+    })
+    .catch(error => console.error('Error:', error));
+}
 
 // Crear nuevo producto
 function CrearNuevoProducto() {
-    let producto = {
-        titulo: document.getElementById('titulo').value,
-        precioPeso: document.getElementById('precioPeso').value,
-        precioDolar: document.getElementById('precioDolar').value,
-        fecha: document.getElementById('fecha').value
-    };
-    fetch(urlBase, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(producto)
-    })
+  let producto = {
+    titulo: document.getElementById('titulo').value,
+    precioPeso: document.getElementById('precioPeso').value,
+    precioDolar: document.getElementById('precioDolar').value,
+    fecha: document.getElementById('fecha').value
+  };
+  fetch(urlBase, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(producto)
+  })
     .then(response => response.text())
     .then(
-        function(texto) {
-            if (texto.trim() == "OK") {
-                alert('Se creo el producto con exito.');
-                Mostrar('lista');
-                ObtenerProductos();
-            } else {
-                alert(texto);
-            }
+      function (texto) {
+        if (texto.trim() == "OK") {
+          alert('Se creo el producto con exito.');
+          Mostrar('lista');
+          ObtenerProductos();
+        } else {
+          alert(texto);
         }
+      }
     )
     .catch(error => console.error('Error:', error));
+}
+
+// Mostrar un div y ocultar los demás
+var ids = ['lista', 'nuevo-producto', 'modificar-producto'];
+function Mostrar(_div) {
+  for (let i = 0; i < ids.length; i++) {
+    document.getElementById(ids[i]).style.display = 'none';
   }
+  document.getElementById(_div).style.display = 'block';
+}
